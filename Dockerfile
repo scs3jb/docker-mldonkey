@@ -7,6 +7,10 @@ RUN \
     rm -rf /var/log/mldonkey && \
     rm /var/lib/mldonkey/*
 
+# Debian fix user permissions for UNRAID
+RUN usermod -u 99 mldonkey
+RUN usermod -g 100 mldonkey
+
 USER mldonkey
 ENV MLDONKEY_DIR=/var/lib/mldonkey LC_ALL=C.UTF-8 LANG=C.UTF-8
 VOLUME /var/lib/mldonkey
